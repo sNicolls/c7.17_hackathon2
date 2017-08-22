@@ -1,0 +1,78 @@
+body{
+    background: url("../assets/nami/nami.png ");
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+
+}
+
+#border_top_bottom{
+    position: absolute;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px #fff, 0 0 70px #228DFF;
+}
+#border_right_left{
+    position: relative;
+    width: 80vw;
+    height: 100vh;
+    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+}
+
+
+#game_title{
+    color: #fff;
+    margin-bottom: 4vh;
+    font-size: 10vw;
+    text-align: center;
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
+    font-family: "Bungee Shade";
+}
+#spacer{
+    height: 3vh;
+}
+
+#input_span{
+    height: 3.3vh;
+    margin-bottom: 25px;
+    width: 65vw;
+    box-shadow: 0 0 20px #fff, 0 0 150px #228DFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+input{
+    border: 0px;
+    height: 3.3vh;
+    width: 58vw;
+    border-radius: 20px;
+    background-color: transparent;
+}
+button{
+    width: 200px;
+    height: 65px;
+    font-size: 4vw;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+    color: white;
+    text-shadow: 0 0 5px black, 0 0 20px #FFDD1B;
+    margin-bottom: 15px;
+    font-family: "Monoton";
+}
+.fa-camera{
+    margin-top: 2px;
+    padding: 4px;
+    border: 2px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+}
