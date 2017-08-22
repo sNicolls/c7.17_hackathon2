@@ -8,7 +8,7 @@ body{
 
 }
 
-#border_top_bottom{
+.border_top_bottom{
     position: absolute;
     width: 100vw;
     height: 90vh;
@@ -18,7 +18,7 @@ body{
     flex-direction: column;
     box-shadow: 0 0 10px #fff, 0 0 70px #228DFF;
 }
-#border_right_left{
+.border_right_left{
     width: 80vw;
     height: 100vh;
     box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
