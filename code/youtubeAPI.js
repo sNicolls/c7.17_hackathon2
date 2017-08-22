@@ -12,6 +12,6 @@ $(document).ready(function(){
             console.log("we in here")
         },
         error: function(){
-            console.log("shit aint workin cuz");
+            console.log("it aint workin cuz");
         }
     })});
