@@ -1,7 +1,6 @@
 /////////////JAVASCRIPT/////////////
 
 //////TEST DATA
-var predictionArr = ['horse', 'dog', 'cat']
 ///////
 $(document).ready(applyClickHandlers);
 
@@ -15,12 +14,10 @@ function applyClickHandlers(){
 /*onSubmit, takes form string and feeds it to Matt's Image recognition*/
 function formSubmission(){
     var imageURL = $("#input_form").val();
-    //MattFunc(imageURL)
+    console.log("SUBMITTEd")
+    makePredictionsArray(imageURL);
     window.open("listening.html", "_self")
 }
-
-
-
 
 
 
@@ -40,22 +37,22 @@ function makeArrayFromResponseObject(responseObject) {
     for (var i = 0; i < arrayWeNeed.length; i++) {
         predictionsArray.push(arrayWeNeed[i].name);
     }
+    var predictionsArray = [];
+
+    makePredictionsArray(imageURL)
+        .then(
+            function (response) {
+                makeArrayFromResponseObject(response);
+                console.log("I was able to make this array:", predictionsArray);
+
+
+            },
+            function (err) {
+                console.log(err)
+            });
 }
 
 
-var predictionsArray = [];
-
-makePredictionsArray('https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg')
-    .then(
-        function (response) {
-            makeArrayFromResponseObject(response);
-            console.log("I was able to make this array:", predictionsArray);
-
-
-        },
-        function (err) {
-            console.log(err)
-        });
 ////////////////MATTS
 
 
@@ -96,6 +93,41 @@ function createIFrame(youtubeURL){
 function returnToHomePage(){
     window.open("index.html", "_self")
 }
+
+//////////////////ITUNES
+
+
+// $( document ).ready(function(searchTerm) {
+
+var music_url;
+var music_array = [];
+var a;
+
+// function itunesConnect(/*searchTerm*/){
+
+var searchTerm = 'fish';
+var url = 'https://itunes.apple.com/search?term=' + searchTerm;
+$.ajax({
+    dataType: 'json',
+    url: url,
+    success: function(result) {
+        music_url = result;
+        for(var i=0;i<10;i++){
+            music_array.push(music_url.results[i].previewUrl);
+        }
+        // console.log(music_array);
+        a = new Audio(music_array[0]);
+        // a.play();
+
+    }
+})
+
+
+function pause_audio(){
+    a.pause();
+}
+// });
+
 
 
 
