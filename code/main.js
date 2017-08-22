@@ -28,3 +28,11 @@
 
 
 /////////////JAVASCRIPT/////////////
+$(document).ready(applyClickHandlers);
+
+function applyClickHandlers(){
+    $("#submit_button").on("click", function(){
+        console.log("clicked")
+        window.open("listening.html")
+    })
+}
