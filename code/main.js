@@ -1,30 +1,38 @@
-/**
- * Created by shanenicolls on 8/22/17.
- */
-
-
-/////////////ClarifAI API///////////
-/*Takes in an image's url or image file
-     Returns An Object Containing the Predictions
- */
-
-
-
-/////////////SoundCloud API/////////
-/*Takes in a String,
-     Returns an Object containing the songs
-     Can Also be Queried to Play a song
- */
-
-
-
-/////////////YOUTUBE API////////////
-/*Takes in a String,
-     Returns an Object containing video query results
-     Can Then Be Queried To Play a Video
- */
-
-
-
-
 /////////////JAVASCRIPT/////////////
+
+$(document).ready(applyClickHandlers);
+
+function applyClickHandlers(){
+    $("#submit_button").on("click", formSubmission);
+    $("#return_to_home").on("click", returnToHomePage);
+    $("#yes_button").on("click", fishOn);
+}
+
+/*onSubmit, takes form string and feeds it to Matt's Image recognition*/
+function formSubmission(){
+    var imageURL = $("#input_form").val();
+    //MattFunc(imageURL)
+    window.open("listening.html", "_self")
+}
+
+//MATT'S FUNC RUNS randomPrediction//
+
+//Takes in
+function randomSelector(array){
+    return array.splice(r_n_g(0, array.length), 1)
+}
+
+function fishOn(){
+
+}
+
+
+function r_n_g(lowNum, highNum) {
+    var randomNumber = Math.floor(Math.random() * (highNum - lowNum + 1) + lowNum);
+    return randomNumber;
+}
+
+
+function returnToHomePage(){
+    window.open("index.html", "_self")
+}

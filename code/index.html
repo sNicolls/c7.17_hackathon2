@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>All Encompassing Multi Media Fish Experience</title>
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--to use the clarifai API-->
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
 
@@ -12,17 +12,16 @@
     <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Monoton" rel="stylesheet">
 
-
 </head>
 <body>
 
 <div id="border_top_bottom">
-    <div id="game_title">Fish <br> Finder</div>
+    <div class="page_title_div">Fish <br> Finder</div>
     <div id="spacer"></div>
-    <span id="input_span"><input type="text"><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
+    <span id="input_span"><input type="text" id="input_form"><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
 
     <!--<input type="text">-->
-    <button>Submit</button>
+    <button class="all_buttons" id="submit_button">Submit</button>
 
 </div>
 <div id="border_right_left">
@@ -30,4 +29,7 @@
 </div>
 
 </body>
+<script>
+
+</script>
 </html>
