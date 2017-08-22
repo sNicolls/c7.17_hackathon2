@@ -11,6 +11,7 @@ function applyClickHandlers(){
     $("#yes_button").on("click", fishOn);
 }
 
+
 /*onSubmit, takes form string and feeds it to Matt's Image recognition*/
 function formSubmission(){
     var imageURL = $("#input_form").val();
@@ -18,8 +19,44 @@ function formSubmission(){
     window.open("listening.html", "_self")
 }
 
-//MATT'S FUNC RUNS randomPrediction//
 
+
+
+
+
+////////////////MATTS
+// instantiate a new Clarifai app passing in your api key.
+const app = new Clarifai.App({
+    apiKey: 'e1fb6f596ca44bd2ac0bd6a608906b9e'
+});
+
+//pass in an image url and you will receive an array of strings that describe that object, or false if there was a problem
+function makePredictionsArray(imageURL) {
+    return app.models.predict(Clarifai.GENERAL_MODEL, imageURL);
+}
+
+function makeArrayFromResponseObject(responseObject) {
+    var arrayWeNeed = responseObject.outputs[0].data.concepts;
+    for (var i = 0; i < arrayWeNeed.length; i++) {
+        predictionsArray.push(arrayWeNeed[i].name);
+    }
+}
+
+
+var predictionsArray = [];
+
+makePredictionsArray('https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg')
+    .then(
+        function (response) {
+            makeArrayFromResponseObject(response);
+            console.log("I was able to make this array:", predictionsArray);
+
+
+        },
+        function (err) {
+            console.log(err)
+        });
+////////////////MATTS
 
 
 function randomSelector(array){
@@ -46,7 +83,7 @@ function fishOn(searchKeyWord){
 
 function parseYoutubeObject(object){
     videoArray = [];
-    console.log(object.items)
+    console.log(object.items);
     for(var i = 0; i < object.items.length; i++){
         videoArray.push("https://www.youtube.com/watch?v=" + object.items[i].id.videoId)
     }
