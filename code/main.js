@@ -14,11 +14,9 @@ function applyClickHandlers(){
 /*onSubmit, takes form string and feeds it to Matt's Image recognition*/
 function formSubmission(){
     var imageURL = $("#input_form").val();
-    console.log("SUBMITTEd")
     makePredictionsArray(imageURL);
     window.open("listening.html", "_self")
 }
-
 
 
 ////////////////MATTS
@@ -37,22 +35,21 @@ function makeArrayFromResponseObject(responseObject) {
     for (var i = 0; i < arrayWeNeed.length; i++) {
         predictionsArray.push(arrayWeNeed[i].name);
     }
-    var predictionsArray = [];
-
-    makePredictionsArray(imageURL)
-        .then(
-            function (response) {
-                makeArrayFromResponseObject(response);
-                console.log("I was able to make this array:", predictionsArray);
-
-
-            },
-            function (err) {
-                console.log(err)
-            });
 }
 
+var predictionsArray = [];
 
+makePredictionsArray(imageURL)
+    .then(
+        function (response) {
+            makeArrayFromResponseObject(response);
+            console.log("I was able to make this array:", predictionsArray);
+
+
+        },
+        function (err) {
+            console.log(err)
+        });
 ////////////////MATTS
 
 
@@ -104,28 +101,29 @@ var music_array = [];
 var a;
 
 // function itunesConnect(/*searchTerm*/){
-
-var searchTerm = 'fish';
-var url = 'https://itunes.apple.com/search?term=' + searchTerm;
-$.ajax({
-    dataType: 'json',
-    url: url,
-    success: function(result) {
-        music_url = result;
-        for(var i=0;i<10;i++){
-            music_array.push(music_url.results[i].previewUrl);
+function iTunesQuery(keyWord){
+    //var searchTerm = 'fish';
+    var url = 'https://itunes.apple.com/search?term=' + keyWord;
+    $.ajax({
+        dataType: 'json',
+        url: url,
+        success: function(result) {
+            music_url = result;
+            for(var i=0;i<10;i++){
+                music_array.push(music_url.results[i].previewUrl);
+            }
+            // console.log(music_array);
+            a = new Audio(music_array[0]);
+            // a.play();
         }
-        // console.log(music_array);
-        a = new Audio(music_array[0]);
-        // a.play();
-
-    }
-})
-
-
-function pause_audio(){
-    a.pause();
+    })
 }
+function parseItunesQuery
+
+
+// function pause_audio(){
+//     a.pause();
+// }
 // });
 
 
