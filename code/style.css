@@ -8,7 +8,7 @@ body{
 
 }
 
-#border_top_bottom{
+.border_top_bottom{
     position: absolute;
     width: 100vw;
     height: 90vh;
@@ -18,15 +18,14 @@ body{
     flex-direction: column;
     box-shadow: 0 0 10px #fff, 0 0 70px #228DFF;
 }
-#border_right_left{
-    position: relative;
+.border_right_left{
     width: 80vw;
     height: 100vh;
     box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
 }
 
 
-#game_title{
+.page_title_div{
     color: #fff;
     margin-bottom: 4vh;
     font-size: 10vw;
@@ -54,8 +53,10 @@ input{
     width: 58vw;
     border-radius: 20px;
     background-color: transparent;
+    color: white;
+    font-size: 22px;
 }
-button{
+.all_buttons{
     width: 200px;
     height: 65px;
     font-size: 4vw;
@@ -68,6 +69,10 @@ button{
     margin-bottom: 15px;
     font-family: "Monoton";
 }
+#return_to_home{
+    box-sizing: content-box;
+    width: 50vw;
+}
 .fa-camera{
     margin-top: 2px;
     padding: 4px;
@@ -75,4 +80,12 @@ button{
     border-radius: 5px;
     color: white;
     box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+}
+#video_modal{
+    margin-top: 35vh;
+}
+#video_display{
+    width: 50vw;
+    height: 50vw;
+    background-color: blue;
 }
