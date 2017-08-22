@@ -6,6 +6,8 @@
 /////////////ClarifAI API///////////
 /*Takes in an image's url or image file
      Returns An Object Containing the Predictions
+
+     This stuff can be found in the image_processing.js file -- Matt
  */
 
 
