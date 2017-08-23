@@ -3,17 +3,30 @@
 //onLoad, apply click handlers to the buttons
 $(document).ready(applyClickHandlers);
 function applyClickHandlers(){
-    console.log("Applying handlers");
+    console.log("Applying handlers")
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
-    $("#yes_button").on("click", fishOn);
 }
-//A couple of functions to generate random numbers and using them to parse arrays
+
+
+
+//onSubmit, takes form string and feeds it to Matt's Image recognition
+function formSubmission(){
+   // window.open("listening.html", "_self")
+    console.log("FORM SUBMIT")
+    var imageURL = $("#input_form").val();
+
+    console.log(imageURL)
+    predictionPromise(imageURL);
+
+}
+
 function randomSelector(array){
     return array.splice(r_n_g(0, array.length), 1)
 }
 function r_n_g(lowNum, highNum) {
-    return Math.floor(Math.random() * (highNum - lowNum + 1) + lowNum);
+    var randomNumber = Math.floor(Math.random() * (highNum - lowNum + 1) + lowNum);
+    return randomNumber;
 }
 
 //Gets the value of the input form and sends it to ClarifAI for visual analysis
@@ -28,22 +41,23 @@ const app = new Clarifai.App({
     apiKey: 'e1fb6f596ca44bd2ac0bd6a608906b9e'
 });
 
+//pass in an image url and you will receive an array of strings that describe that object, or false if there was a problem
 function makePredictionsArray(imageURL) {
     return app.models.predict(Clarifai.GENERAL_MODEL, imageURL);
 }
-
-//this function is called in the success portion of the promise, making it a fine place to define functionality that is dependant on having a populated predictionsArray
 function makeArrayFromResponseObject(responseObject) {
     var arrayWeNeed = responseObject.outputs[0].data.concepts;
     for (var i = 0; i < arrayWeNeed.length; i++) {
         predictionsArray.push(arrayWeNeed[i].name);
     }
+
     var keyWord = randomSelector(predictionsArray);
+    console.log("KEYWORD", keyWord)
     iTunesQuery(keyWord);
 }
 
 var predictionPromise = function(imageURL){
-    console.log("making promises");
+    console.log("making promises")
     makePredictionsArray(imageURL)
         .then(
             function (response) {
@@ -57,10 +71,9 @@ var predictionPromise = function(imageURL){
 
 //Takes in a keyword and returns an object from YouTube that contains video URL's
 function fishOn(searchKeyWord){
-    console.log("FISH ON DAWG")
     var youtube_results;
     var youtube_id;
-    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="+ 'fish' + searchKeyWord +"&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q=" + 'fish' + searchKeyWord + 'video' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
 
         $.ajax({
             dataType: 'json',
@@ -75,8 +88,8 @@ function parseYoutubeObject(object){
     for(var i = 0; i < object.items.length; i++){
         videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId)
     }
-    console.log(randomSelector(videoArray))
-    createListeningEnvironment(randomSelector(videoArray))
+    console.log("RANDOM YOUTUBE LINK", randomSelector(videoArray))
+    createIFrame(randomSelector(videoArray))
 }
 
 
@@ -92,23 +105,19 @@ function iTunesQuery(keyWord){
     $.ajax({
         dataType: 'json',
         url: url,
-        success: function(response){
-            parseItunesQuery(response, keyWord)
-        }
+        success: parseItunesQuery
     })
 }
+
 //Breaks down the iTunes object into an array of songs
 function parseItunesQuery(response, keyWord){
     var a;
     var music_array = [];
     var music_url = response;
     console.log("ITUNES RESPONSE", response)
-    for(var i=0;i<10;i++){
+    for(var i=0;i<5;i++){
         music_array.push(music_url.results[i]);
         }
-    $(".border_top_bottom").append("<button id='bass_drop'>Drop the Bass</button>")
-    $("#bass_drop").on("click", function(){fishOn(keyWord)})
-    //createListeningEnvironment()
     console.log("MUSIC ARR", music_array)
     var random_song = randomSelector(music_array)
     var artistName = random_song[0].artistName;
@@ -116,26 +125,29 @@ function parseItunesQuery(response, keyWord){
     a = new Audio(random_song[0].previewUrl);
     a.play();
     a.onended = function(){displayArtist(artistName, trackName)};
-}
+    $("#fishModal").modal('toggle')
+    $('#yes_button').on('click', function(){
+        $("#fishModal").modal('toggle')
+        $("#videoModal").modal("toggle")
+        fishOn(keyWord)
 
- function displayArtist(artistName, trackName){
-     $(".border_top_bottom").html("")
-     $(".border_top_bottom").append(artistName, trackName)
- }
-
-//Alters the view to display what the user should see once a song starts playing
-function createListeningEnvironment(youTubeURL){
-    var urlString = youTubeURL.toString();
-    console.log("URL STRING", urlString)
-    $(".border_top_bottom").html("")
-    $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>")
-    $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
-    $("#reset_yo_self").on("click", function(){
-        location.reload();
     })
 }
 
+ function displayArtist(artistName, trackName){
+    $("#videoModal").modal('toggle');
+    $("#artistModal").modal('toggle');
+    $("#artist_modal_body").append(artistName, trackName)
+ }
 
-
-
-
+//Alters the view to display what the user should see once a song starts playing
+function createIFrame(youTubeURL){
+    var urlString = youTubeURL.toString();
+    console.log("URL STRING", urlString)
+  //  $(".border_top_bottom").html("")
+    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>")
+  //  $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
+  //   $("#reset_yo_self").on("click", function(){
+  //       location.reload();
+  //   })
+}
