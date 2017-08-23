@@ -151,7 +151,8 @@ function createIFrame(youTubeURL){
     var urlString = youTubeURL.toString();
     console.log("URL STRING", urlString)
   //  $(".border_top_bottom").html("")
-    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>")
+    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>").mute().autoplay()
+
   //  $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
   //   $("#reset_yo_self").on("click", function(){
   //       location.reload();
