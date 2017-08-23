@@ -49,7 +49,6 @@ function makeArrayFromResponseObject(responseObject) {
     }
     var keyWord = randomSelector(predictionsArray)
     iTunesQuery(keyWord)
-    fishOn(keyWord)
 }
 //var whateverURL = 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg'
 
@@ -84,10 +83,10 @@ function parseYoutubeObject(object){
     videoArray = [];
     console.log(object.items);
     for(var i = 0; i < object.items.length; i++){
-        videoArray.push("https://www.youtube.com/watch?v=" + object.items[i].id.videoId)
+        videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId)
     }
     console.log(randomSelector(videoArray))
-    //createIFrame(randomSelector(videoArray))
+    createListeningEnvironment(randomSelector(videoArray))
 }
 function createIFrame(youtubeURL){
     $("#video_display_area").html("<>")
@@ -105,22 +104,36 @@ function iTunesQuery(keyWord){
     $.ajax({
         dataType: 'json',
         url: url,
-        success: parseItunesQuery
+        success: function(response){
+            parseItunesQuery(response, keyWord)
+        }
     })
 }
-function parseItunesQuery(response){
+function parseItunesQuery(response, keyWord){
+    console.log("THIS IS THE EKYWORD", keyWord)
         var a;
         var music_array = [];
         var music_url = response;
         for(var i=0;i<10;i++){
             music_array.push(music_url.results[i].previewUrl);
         }
-         console.log(randomSelector(music_array));
+        $(".border_top_bottom").append("<button id='bass_drop'>Drop the Bass</button>")
+    $("#bass_drop").on("click", function(){fishOn(keyWord)})
+        //createListeningEnvironment()
          a = new Audio(music_array[0]);
          a.play();
-
 }
 
+function createListeningEnvironment(youTubeURL){
+    var urlString = youTubeURL.toString();
+    console.log("URL STRING", urlString)
+    $(".border_top_bottom").html("")
+    $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>")
+    $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
+    $("#reset_yo_self").on("click", function(){
+        location.reload();
+    })
+}
 
 // function pause_audio(){
 //     a.pause();
