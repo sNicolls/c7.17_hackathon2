@@ -6,7 +6,10 @@ function applyClickHandlers(){
     console.log("Applying handlers")
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
-    $("#yes_button").on("click", fishOn);
+    $(".yes-button").on("click", fishOn);
+    $(".yes-button").on("click", function(){
+        makeParticlesOnElement(document.querySelector('.yes-button'));
+    });
 }
 
 
@@ -69,6 +72,7 @@ var predictionPromise = function(imageURL){
 
 //YOUTUBE
 function fishOn(searchKeyWord){
+    
     var youtube_results;
     var youtube_id;
     var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="+ 'fish' + searchKeyWord +"&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";

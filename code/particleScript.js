@@ -1,7 +1,14 @@
 function makeParticlesOnElement(element){
-    var targetElement = document.querySelector('body');
+    var targetElement = document.querySelector('.yes-button');
     var bounds = element.getBoundingClientRect();
 
+    function fishSounds(){
+        var audio = new Audio('squish.mp3');
+        audio.play();
+
+    }
+    fishSounds();
+      
     function makeEmitter(options){
         //Here's an object of default options, just in case you forgot to pass in your own.
         var defaultOptions = {
@@ -204,7 +211,7 @@ function makeParticlesOnElement(element){
 
     }
     makeEmitter({
-        x: 500, y: 100,
+        x: 100, y: 0,
         color:{r: 255, g: 0, b:0, o:1},
         gravity: .2,height: 180, width: 180,
 
