@@ -121,8 +121,8 @@ input#input_form {
 #video_modal_body{
     float: left;
     position: absolute;
-    height: 95vh;
-    width: 95vw;
+    height: 100vh;
+    width: 97vw;
 }
 #video_display{
     width: 50vw;
@@ -130,6 +130,9 @@ input#input_form {
     background-color: blue;
 }
 
+#artistModal{
+
+}
 #artist_modal_body{
     color: white;
 }

@@ -79,7 +79,7 @@ function fishOn(searchKeyWord){
     
     var youtube_results;
     var youtube_id;
-    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q=" + 'fish' + searchKeyWord + 'video' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + 'fish' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
 
         $.ajax({
             dataType: 'json',
@@ -132,7 +132,7 @@ function parseItunesQuery(response, keyWord){
     a.play();
     a.onended = function(){displayArtist(artistName, trackName)};
     $("#fishModal").modal('toggle')
-    $('#yes_button').on('click', function(){
+    $('.yes-button').on('click', function(){
         $("#fishModal").modal('toggle')
         $("#videoModal").modal("toggle")
         fishOn(keyWord)
@@ -143,15 +143,15 @@ function parseItunesQuery(response, keyWord){
  function displayArtist(artistName, trackName){
     $("#videoModal").modal('toggle');
     $("#artistModal").modal('toggle');
-    $("#artist_modal_body").append(artistName, trackName)
+    $("#artist_and_song_text").append(artistName, "<br> <br>", trackName)
  }
 
 //Alters the view to display what the user should see once a song starts playing
 function createIFrame(youTubeURL){
     var urlString = youTubeURL.toString();
-    console.log("URL STRING", urlString)
+    console.log("URL STRING", urlString);
   //  $(".border_top_bottom").html("")
-    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>").mute().autoplay()
+    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>")
 
   //  $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
   //   $("#reset_yo_self").on("click", function(){
