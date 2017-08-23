@@ -26,14 +26,18 @@ function makeParticlesOnElement(element){
             // This process happens once every chanceTime milliseconds.
             percentChance: .5,
 
-            //how exactly does this work? is it an arbitrary coefficient? is it in milliseconds?
+            //time for one animation cycle to complete
             animationTime: 10,
 
             //how often to check to make a particle
             chanceTime: .1,
             rotation_min: 0,
             rotation_max: 0,
+
+            //how long the particle lives before it is removed
             particle_life: 3000,
+
+            //unused
             color: {r:255, g:255, b:255, o:.5},
 //                velocity: 10, //pixels per second
 
@@ -147,10 +151,12 @@ function makeParticlesOnElement(element){
 
             var currentX = params.x;
             var currentY = params.y;
+
+            //angle is in degrees. Math.cos and Math.sin need it to be in radians. Convert degrees to radians and use radians from now on
             var radians = params.angle * (Math.PI/180);
 //                debugger;
-            var xVelocity = Math.cos(params.angle) * params.velocity_per_frame;
-            var yVelocity = Math.sin(params.angle) * params.velocity_per_frame;
+            var xVelocity = Math.cos(radians) * params.velocity_per_frame;
+            var yVelocity = Math.sin(radians) * params.velocity_per_frame;
             var lifeTime = params.particle_life;
             var rotation_delta = Math.random()*(params.rotation_max - params.rotation_min);
             /*
@@ -218,7 +224,12 @@ function makeParticlesOnElement(element){
         max_velocity: 800,
         min_velocity: 20,
 
+        start_angle: 225,
+        end_angle: 315,
+
+        //make particles on every checkToMakeParticles
         percentChance: 1,
+
         rotation_min: .05,
         rotation_max: 2,
         chanceTime: 0,
