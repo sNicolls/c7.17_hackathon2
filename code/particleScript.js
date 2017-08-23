@@ -1,14 +1,7 @@
 function makeParticlesOnElement(element){
-    var targetElement = document.querySelector('.yes-button');
+    var targetElement = document.querySelector('body');
     var bounds = element.getBoundingClientRect();
 
-    function fishSounds(){
-        var audio = new Audio('squish.mp3');
-        audio.play();
-
-    }
-    fishSounds();
-      
     function makeEmitter(options){
         //Here's an object of default options, just in case you forgot to pass in your own.
         var defaultOptions = {
@@ -26,14 +19,18 @@ function makeParticlesOnElement(element){
             // This process happens once every chanceTime milliseconds.
             percentChance: .5,
 
-            //how exactly does this work? is it an arbitrary coefficient? is it in milliseconds?
+            //time for one animation cycle to complete
             animationTime: 10,
 
             //how often to check to make a particle
             chanceTime: .1,
             rotation_min: 0,
             rotation_max: 0,
+
+            //how long the particle lives before it is removed
             particle_life: 3000,
+
+            //unused
             color: {r:255, g:255, b:255, o:.5},
 //                velocity: 10, //pixels per second
 
@@ -41,8 +38,12 @@ function makeParticlesOnElement(element){
             min_velocity : 10,
 
             gravity: 0.2,
+
+
             start_angle: 0,
             end_angle: 90,
+
+
             height: 3,
             width: 3,
             opacity_start: 1, //opacity at start of run
@@ -144,13 +145,16 @@ function makeParticlesOnElement(element){
             //if particle.style.opacity is undefined, currentOpacity will be set to 1 instead.
             var currentOpacity = particle.style.opacity || 1;
 
-
             var currentX = params.x;
             var currentY = params.y;
+
+            //angle is in degrees. Math.cos and Math.sin need it to be in radians. Convert degrees to radians and use radians from now on
             var radians = params.angle * (Math.PI/180);
 //                debugger;
-            var xVelocity = Math.cos(params.angle) * params.velocity_per_frame;
-            var yVelocity = Math.sin(params.angle) * params.velocity_per_frame;
+
+            var xVelocity = Math.cos(radians) * params.velocity_per_frame;
+            var yVelocity = Math.sin(radians) * params.velocity_per_frame;
+
             var lifeTime = params.particle_life;
             var rotation_delta = Math.random()*(params.rotation_max - params.rotation_min);
             /*
@@ -211,12 +215,17 @@ function makeParticlesOnElement(element){
 
     }
     makeEmitter({
-        x: 100, y: 0,
+        x: 500, y: 100,
         color:{r: 255, g: 0, b:0, o:1},
         gravity: .2,height: 180, width: 180,
 
         max_velocity: 800,
         min_velocity: 20,
+
+
+        start_angle: 225,
+        end_angle:315,
+
 
         percentChance: 1,
         rotation_min: .05,
