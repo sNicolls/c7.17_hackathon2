@@ -6,6 +6,11 @@ function applyClickHandlers(){
     console.log("Applying handlers")
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
+
+    $(".yes-button").on("click", fishOn);
+    $(".yes-button").on("click", function(){
+        makeParticlesOnElement(document.querySelector('.yes-button'));
+    });
 }
 
 
@@ -71,6 +76,7 @@ var predictionPromise = function(imageURL){
 
 //Takes in a keyword and returns an object from YouTube that contains video URL's
 function fishOn(searchKeyWord){
+    
     var youtube_results;
     var youtube_id;
     var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q=" + 'fish' + searchKeyWord + 'video' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";

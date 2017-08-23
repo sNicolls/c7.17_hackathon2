@@ -129,6 +129,7 @@ input#input_form {
     height: 50vw;
     background-color: blue;
 }
+
 #artist_modal_body{
     color: white;
 }
@@ -136,3 +137,13 @@ iframe{
     height: 100%;
     width: 100%;
 }
+
+
+.particle{
+    background-image: url(../assets/fish.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .5;
+}
+

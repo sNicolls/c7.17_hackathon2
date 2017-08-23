@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+    <script type="text/javascript" src="particleScript.js"></script>
     <script src="main.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -36,8 +37,13 @@
             <div class="modal-body">
                 <div class="modal_title">Are The <br> Fish <br> Biting?</div>
                     <div class="button-box">
-                        <button class="btn all_buttons" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>
-                        <button class="btn all_buttons" data-dismiss="modal">NO</button>
+
+                        <!--<button class="btn all_buttons" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>-->
+                        <!--<button class="btn all_buttons" data-dismiss="modal">NO</button>-->
+
+                        <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>
+                        <button class="btn all_buttons no-button" data-dismiss="modal">NO</button>
+
                     </div>
                 </div>
             </div>
