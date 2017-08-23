@@ -7,7 +7,11 @@ body{
     box-sizing: content-box;
 
 }
-
+.online{
+    font-size: 4vw;
+    letter-spacing: 3vw;
+    display: block;
+}
 .border_top_bottom{
     position: absolute;
     width: 100vw;
@@ -23,8 +27,25 @@ body{
     height: 100vh;
     box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
 }
-
-
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,54%);
+    -ms-transform: translate(0,54%);
+    -o-transform: translate(0,54%);
+    transform: translate(0,54%);
+}
+.modal-content {
+    position: relative;
+    background-color: rgba(0,0,0,.9);
+    border: 1px solid white;
+    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+    background: url("../assets/nami/nami.png ");
+}
+.button-box{
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 136px;
+}
 .page_title_div{
     color: #fff;
     margin-bottom: 4vh;
@@ -33,7 +54,13 @@ body{
     text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
     font-family: "Bungee Shade";
 }
-
+.modal_title{
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
+    font-family: "Bungee Shade";
+    text-align: center;
+    color: #fff;   
+    font-size: 50px;
+}
 #input_span{
     width: 65vw;
     display: flex;
@@ -47,20 +74,22 @@ body{
 }
 .all_buttons{
     background-color: rgba(0, 0, 0, .2);
-    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
     color: white;
     text-shadow: 0 0 5px black, 0 0 20px #FFDD1B;
     font-size: 20px;
     font-family: "Bungee Shade";
     border: 1px solid white;
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
 }
 input#input_form {
     background: transparent;
     background-color: rgba(0, 0, 0, .2);
-    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 0 #FFDD1B;
     color: white;
     text-shadow: 0 0 5px black, 0 0 20px #FFDD1B;
-    font-size: 20px;
+    font-size: 2vw;
+    height: 48px;
 }
 .input-group-addon {
     padding: 6px 12px;
@@ -72,6 +101,7 @@ input#input_form {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 14px #FFDD1B, 0 0 30px #FFDD1B;
 }
 #return_to_home{
     box-sizing: content-box;
@@ -83,7 +113,7 @@ input#input_form {
     border: 2px;
     border-radius: 5px;
     color: white;
-    box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 0 #FFDD1B, 0 0 30px #FFDD1B;
 }
 #video_modal{
     margin-top: 35vh;
