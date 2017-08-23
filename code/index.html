@@ -17,7 +17,7 @@
 <body>
 
 <div class="border_top_bottom">
-    <div class="page_title_div">Fish <br> Finder</div>
+    <div class="page_title_div">Fish <br> Finder <span class="online">Online</span></div>
     <span id="input_span">
         <div class="input-group form-group">
             <span class="input-group-addon">
@@ -38,9 +38,6 @@
                 <div class="modal_title">Are The <br> Fish <br> Biting?</div>
                     <div class="button-box">
 
-                        <!--<button class="btn all_buttons" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>-->
-                        <!--<button class="btn all_buttons" data-dismiss="modal">NO</button>-->
-
                         <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>
                         <button class="btn all_buttons no-button" data-dismiss="modal">NO</button>
 
@@ -51,14 +48,22 @@
     </div>
     <!-- VIDEO MODAL -->
     <div class="modal fade" id="videoModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="video_modal_body"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="videoModal" role="dialog">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div class="modal-body" id="video_modal_body"></div>
     </div>
 
-    <div class="modal fade" id="artistModal" role="dialog">
+<!--     <div class="modal fade" id="artistModal" role="dialog">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="modal-body" id="artist_modal_body"></div>
     </div>
-
+ -->
 </body>
 </html>
