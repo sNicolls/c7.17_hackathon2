@@ -12,11 +12,13 @@ function applyClickHandlers(){
 
 //onSubmit, takes form string and feeds it to Matt's Image recognition
 function formSubmission(){
+   // window.open("listening.html", "_self")
     console.log("FORM SUBMIT")
     var imageURL = $("#input_form").val();
+
     console.log(imageURL)
     predictionPromise(imageURL);
-    //window.open("listening.html", "_self")
+
 }
 
 function randomSelector(array){
@@ -45,7 +47,9 @@ function makeArrayFromResponseObject(responseObject) {
     for (var i = 0; i < arrayWeNeed.length; i++) {
         predictionsArray.push(arrayWeNeed[i].name);
     }
-    console.log(predictionsArray)
+    var keyWord = randomSelector(predictionsArray)
+    iTunesQuery(keyWord)
+    fishOn(keyWord)
 }
 //var whateverURL = 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg'
 
@@ -67,7 +71,7 @@ var predictionPromise = function(imageURL){
 function fishOn(searchKeyWord){
     var youtube_results;
     var youtube_id;
-    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="+ 'fish' +"&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="+ 'fish' + searchKeyWord +"&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
 
         $.ajax({
             dataType: 'json',
@@ -82,7 +86,8 @@ function parseYoutubeObject(object){
     for(var i = 0; i < object.items.length; i++){
         videoArray.push("https://www.youtube.com/watch?v=" + object.items[i].id.videoId)
     }
-    createIFrame(randomSelector(videoArray))
+    console.log(randomSelector(videoArray))
+    //createIFrame(randomSelector(videoArray))
 }
 function createIFrame(youtubeURL){
     $("#video_display_area").html("<>")
@@ -110,9 +115,10 @@ function parseItunesQuery(response){
         for(var i=0;i<10;i++){
             music_array.push(music_url.results[i].previewUrl);
         }
-         console.log(music_array);
-        a = new Audio(music_array[0]);
-        // a.play();
+         console.log(randomSelector(music_array));
+         a = new Audio(music_array[0]);
+         a.play();
+
 }
 
 
