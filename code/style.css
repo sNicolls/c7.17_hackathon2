@@ -123,3 +123,11 @@ input#input_form {
     height: 50vw;
     background-color: blue;
 }
+
+.particle{
+    background-image: url(../assets/fish.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .5;
+}
