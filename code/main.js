@@ -32,16 +32,17 @@ function putClickHandlersOnSampleImages(){
     })
 }
 
+//This formSubmission() definition is unused. It is defined below.
 //onSubmit, takes form string and feeds it to Matt's Image recognition
-function formSubmission(){
-   // window.open("listening.html", "_self")
-    console.log("FORM SUBMIT")
-    var imageURL = $("#input_form").val();
-
-    console.log(imageURL)
-    predictionPromise(imageURL);
-
-}
+// function formSubmission(){
+//    // window.open("listening.html", "_self")
+//     console.log("FORM SUBMIT")
+//     var imageURL = $("#input_form").val();
+//
+//     console.log(imageURL)
+//     predictionPromise(imageURL);
+//
+// }
 
 function randomSelector(array){
     return array.splice(r_n_g(0, array.length), 1)
@@ -54,7 +55,10 @@ function r_n_g(lowNum, highNum) {
 //Gets the value of the input form and sends it to ClarifAI for visual analysis
 function formSubmission(){
     var imageURL = $("#input_form").val();
-    predictionPromise(imageURL);
+    if(imageURL) //if the imageURL is truthy
+    {
+        predictionPromise(imageURL);
+    }
 }
 
 //Ajax call to ClarifAI that takes in a url and returns an object containing a list of keywords
