@@ -141,10 +141,10 @@ function iTunesQuery(keyWord){
         success: parseItunesQuery
     })
 }
-
+var a;
 //Breaks down the iTunes object into an array of songs
 function parseItunesQuery(response, keyWord){
-    var a;
+    
     var music_array = [];
     var music_url = response;
     console.log("ITUNES RESPONSE", response)
@@ -163,7 +163,8 @@ function parseItunesQuery(response, keyWord){
         setTimeout(function(){ $("#fishModal").modal('toggle')}, 1000);
         fishOn(keyWord)
     })
-    $('.no-button').on('click', function(){
+    $('#no_button').on('click', function(){
+        console.log('NO BUTTON CLICKED')
         if(!a.paused) a.pause();
     })
 }
