@@ -6,9 +6,9 @@ function applyClickHandlers(){
     console.log("Applying handlers")
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
-
+    $("#no_button").on('click', reloadApp)
     $(".yes-button").on("click", fishOn);
-    $("body").on("click", function(){
+    $("#fishModal").on("click", function(){
         makeParticlesOnElement(document.querySelector('.yes-button'));
     });
 }
@@ -91,12 +91,11 @@ function parseYoutubeObject(object){
     videoArray = [];
     console.log(object.items);
     for(var i = 0; i < object.items.length; i++){
-        videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId)
+        videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId + "?autoplay=1")
     }
     console.log("RANDOM YOUTUBE LINK", randomSelector(videoArray))
     createIFrame(randomSelector(videoArray))
 }
-
 
 function returnToHomePage(){
     window.open("index.html", "_self")
@@ -133,9 +132,7 @@ function parseItunesQuery(response, keyWord){
     $("#fishModal").modal('toggle')
     $('.yes-button').on('click', function(){
         setTimeout(function(){ $("#fishModal").modal('toggle')}, 1000);
-
         fishOn(keyWord)
-
     })
 }
 
@@ -143,6 +140,7 @@ function parseItunesQuery(response, keyWord){
     $("#videoModal").modal('toggle');
     $("#artistModal").modal('toggle');
     $("#artist_and_song_text").append(artistName, "<br> <br>", trackName);
+    setTimeout(function(){location.reload}, 3000)
  }
 
 //Alters the view to display what the user should see once a song starts playing
@@ -151,6 +149,8 @@ function createIFrame(youTubeURL){
     console.log("URL STRING", urlString);
     $(".border_top_bottom").html("");
     $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>");
-    $(".border_top_bottom").append("<button id='reset_button'>RESET</button>")
-    $("body").on("click", ".reset_button", function(){location.reload})
+    $(".border_top_bottom").append("<button class='all_buttons' id='reset_button' onclick='reloadApp()'>RESET</button>")
+}
+function reloadApp(){
+    location.reload()
 }
