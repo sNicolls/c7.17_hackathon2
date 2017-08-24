@@ -10,7 +10,7 @@ function applyClickHandlers(){
         if(!a.paused) a.pause();
     })
     $(".input-group-addon").on("click",pullUpSampleImages);
-    $(".yes-button").on("click", fishOn);
+
     $("#fishModal").on("click", function(){
         makeParticlesOnElement(document.querySelector('.yes-button'));
     });
@@ -44,7 +44,7 @@ function randomSelector(array){
     return array.splice(r_n_g(0, array.length), 1)
 }
 function r_n_g(lowNum, highNum) {
-    var randomNumber = Math.floor(Math.random() * (highNum - lowNum + 1) + lowNum);
+    var randomNumber = Math.floor(Math.random() * (highNum - lowNum) + lowNum);
     return randomNumber;
 }
 
@@ -90,24 +90,13 @@ var predictionPromise = function(imageURL){
 };
 
 //Takes in a keyword and returns an object from YouTube that contains video URL's
-// function fishOn(searchKeyWord){
-//     var youtube_results;
-//     var youtube_id;
-//     var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + 'fish' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
-//
-//         $.ajax({
-//             dataType: 'json',
-//             url: youtubekey,
-//             success: parseYoutubeObject
-//         });
-// }
 function fishOn(searchKeyWord){
-    var searchArr= ["fish", "ocean", "fishing", "deep sea", "sea", "shark", "creepy fish", "spooky fish", "fish fight", "fisherman","fish outta water"];
+    var searchArr= ["fish", "ocean", "sea", "shark", "creepy fish", "fight", "man", "water", "explosion", "space"];
     var searchHelper = searchArr[Math.floor(Math.random() * searchArr.length)];
     console.log(searchHelper);
     var youtube_results;
     var youtube_id;
-    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + searchHelper + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + "%20" + searchHelper + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
 
     $.ajax({
         dataType: 'json',
@@ -118,12 +107,13 @@ function fishOn(searchKeyWord){
 //Breaks down the YouTube object into and array of video URL's
 function parseYoutubeObject(object){
     videoArray = [];
-    console.log(object.items);
+    console.log("PARSE OBJECT YOUTUBE", object.items);
     for(var i = 0; i < object.items.length; i++){
         videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId + "?start=30&autoplay=1")
     }
-    console.log("RANDOM YOUTUBE LINK", randomSelector(videoArray))
-    createIFrame(randomSelector(videoArray))
+    var youtubeLink = randomSelector(videoArray)
+    console.log(youtubeLink)
+    createIFrame(youtubeLink)
 }
 
 function returnToHomePage(){
@@ -138,7 +128,7 @@ function iTunesQuery(keyWord){
     $.ajax({
         dataType: 'json',
         url: url,
-        success: parseItunesQuery
+        success: function(response){parseItunesQuery(response, keyWord)}
     })
 }
 var a;
@@ -183,7 +173,6 @@ function createIFrame(youTubeURL){
     $(".border_top_bottom").html("");
     $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>");
     $(".border_top_bottom").append("<button class='all_buttons' id='reset_button' onclick='reloadApp()'>RESET</button>")
-    $('iframe').mute()
 }
 function reloadApp(){
     location.reload()
