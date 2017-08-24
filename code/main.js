@@ -4,7 +4,10 @@
 $(document).ready(applyClickHandlers);
 function applyClickHandlers(){
     console.log("Applying handlers");
-    $("#submit_button").on("click", formSubmission);
+    $("#submit_button").on("click", function(){
+        formSubmission();
+
+    });
     $("#return_to_home").on("click", returnToHomePage);
     $('.no-button').on('click', function(){
         if(!a.paused) a.pause();
@@ -29,16 +32,17 @@ function putClickHandlersOnSampleImages(){
     })
 }
 
+//This formSubmission() definition is unused. It is defined below.
 //onSubmit, takes form string and feeds it to Matt's Image recognition
-function formSubmission(){
-   // window.open("listening.html", "_self")
-    console.log("FORM SUBMIT")
-    var imageURL = $("#input_form").val();
-
-    console.log(imageURL)
-    predictionPromise(imageURL);
-
-}
+// function formSubmission(){
+//    // window.open("listening.html", "_self")
+//     console.log("FORM SUBMIT")
+//     var imageURL = $("#input_form").val();
+//
+//     console.log(imageURL)
+//     predictionPromise(imageURL);
+//
+// }
 
 function randomSelector(array){
     return array.splice(r_n_g(0, array.length), 1)
@@ -50,8 +54,16 @@ function r_n_g(lowNum, highNum) {
 
 //Gets the value of the input form and sends it to ClarifAI for visual analysis
 function formSubmission(){
+
+    if( a && !a.paused)
+        a.pause();
+
     var imageURL = $("#input_form").val();
-    predictionPromise(imageURL);
+    if(imageURL) //if the imageURL is truthy
+    {
+
+        predictionPromise(imageURL);
+    }
 }
 
 //Ajax call to ClarifAI that takes in a url and returns an object containing a list of keywords
@@ -155,7 +167,7 @@ function parseItunesQuery(response, keyWord){
     })
     $('#no_button').on('click', function(){
         console.log('NO BUTTON CLICKED')
-        if(!a.paused) a.pause();
+        if(a && !a.paused) a.pause();
     })
 }
 

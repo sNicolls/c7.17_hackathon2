@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="border_top_bottom">
     <div class="page_title_div">Fish <br> Finder <span class="online">Online</span></div>
     <span id="input_span">
@@ -29,8 +28,6 @@
     <button class="btn all_buttons" id="submit_button">Cast Line</button>
 </div>
 <div class="border_right_left"></div>
-
-
 <!--IMAGE SELECTION MODAL-->
 <div class="modal fade" id="imagePicker" role="dialog">
     <div class="modal-dialog">
@@ -44,28 +41,24 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png" alt="">
                 <img src="https://s-media-cache-ak0.pinimg.com/originals/d9/18/d2/d918d2443f14724dbe44682d19fdddf0.png">
             </div>
-
-
         </div>
     </div>
 </div>
+<!-- FISH BITING MODAL -->
+<div class="modal fade" id="fishModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal_title">Are The <br> Fish <br> Biting?</div>
+                <div class="button-box">
+                    <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">Yes</button>
 
-
-    <!-- FISH BITING MODAL -->
-    <div class="modal fade" id="fishModal" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-                <div class="modal_title">Are The <br> Fish <br> Biting?</div>
-                    <div class="button-box">
-                        <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">Yes</button>
-                        <button class="btn all_buttons no-button" data-dismiss="modal" id="no_button">no</button>
-                    </div>
+                    <button class="btn all_buttons no-button" data-dismiss="modal" id="no_button">no</button>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 <div class="modal fade" id="artistModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
