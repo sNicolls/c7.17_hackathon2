@@ -6,7 +6,9 @@ function applyClickHandlers(){
     console.log("Applying handlers")
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
-    $("#no_button").on('click', reloadApp)
+    $('.no-button').on('click', function(){
+        if(!a.paused) a.pause();
+    })
     $(".yes-button").on("click", fishOn);
     $("#fishModal").on("click", function(){
         makeParticlesOnElement(document.querySelector('.yes-button'));
@@ -75,16 +77,30 @@ var predictionPromise = function(imageURL){
 };
 
 //Takes in a keyword and returns an object from YouTube that contains video URL's
+// function fishOn(searchKeyWord){
+//     var youtube_results;
+//     var youtube_id;
+//     var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + 'fish' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+//
+//         $.ajax({
+//             dataType: 'json',
+//             url: youtubekey,
+//             success: parseYoutubeObject
+//         });
+// }
 function fishOn(searchKeyWord){
+    var searchArr= ["fish", "ocean", "fishing", "deep sea", "sea", "shark", "creepy fish", "spooky fish", "fish fight", "fisherman","fish outta water"];
+    var searchHelper = searchArr[Math.floor(Math.random() * searchArr.length)];
+    console.log(searchHelper);
     var youtube_results;
     var youtube_id;
-    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + 'fish' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
+    var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + searchHelper + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
 
-        $.ajax({
-            dataType: 'json',
-            url: youtubekey,
-            success: parseYoutubeObject
-        });
+    $.ajax({
+        dataType: 'json',
+        url: youtubekey,
+        success: parseYoutubeObject
+    });
 }
 //Breaks down the YouTube object into and array of video URL's
 function parseYoutubeObject(object){
@@ -139,7 +155,7 @@ function parseItunesQuery(response, keyWord){
  function displayArtist(artistName, trackName){
     $("#videoModal").modal('toggle');
     $("#artistModal").modal('toggle');
-    $("#artist_and_song_text").append(artistName, "<br> <br>", trackName);
+    $("#artist_and_song_text").append("<em>Artist:</em>", "<br>", artistName, "<br>", "<em>Song:</em>", "<br>", trackName);
     setTimeout(function(){location.reload}, 3000)
  }
 
