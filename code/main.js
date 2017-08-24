@@ -179,6 +179,7 @@ function createIFrame(youTubeURL){
     $(".border_top_bottom").html("");
     $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>");
     $(".border_top_bottom").append("<button class='all_buttons' id='reset_button' onclick='reloadApp()'>RESET</button>")
+    $('iframe').mute()
 }
 function reloadApp(){
     location.reload()
