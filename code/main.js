@@ -6,7 +6,7 @@ function applyClickHandlers(){
     console.log("Applying handlers");
     $("#submit_button").on("click", function(){
         formSubmission();
-        if(!a.paused) a.pause();
+
     });
     $("#return_to_home").on("click", returnToHomePage);
     $('.no-button').on('click', function(){
@@ -54,9 +54,14 @@ function r_n_g(lowNum, highNum) {
 
 //Gets the value of the input form and sends it to ClarifAI for visual analysis
 function formSubmission(){
+
+    if( a && !a.paused)
+        a.pause();
+
     var imageURL = $("#input_form").val();
     if(imageURL) //if the imageURL is truthy
     {
+
         predictionPromise(imageURL);
     }
 }
