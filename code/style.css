@@ -28,10 +28,10 @@ body{
     box-shadow: 0 0 10px #fff, 0 0 150px #228DFF;
 }
 .modal.in .modal-dialog {
-    -webkit-transform: translate(0,54%);
-    -ms-transform: translate(0,54%);
-    -o-transform: translate(0,54%);
-    transform: translate(0,54%);
+    -webkit-transform: translate(0,12%);
+    -ms-transform: translate(0,12%);
+    -o-transform: translate(0,12%);
+    transform: translate(0,12%);
 }
 .modal-content {
     position: relative;

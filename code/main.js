@@ -163,6 +163,9 @@ function parseItunesQuery(response, keyWord){
         setTimeout(function(){ $("#fishModal").modal('toggle')}, 1000);
         fishOn(keyWord)
     })
+    $('.no-button').on('click', function(){
+        if(!a.paused) a.pause();
+    })
 }
 
  function displayArtist(artistName, trackName){
