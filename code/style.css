@@ -115,21 +115,14 @@ input#input_form {
     color: white;
     box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 0 #FFDD1B, 0 0 30px #FFDD1B;
 }
-#videoModal{
-
-}
-#video_modal_body{
-    float: left;
-    position: absolute;
-    height: 100vh;
-    width: 97vw;
-}
 #video_display{
     width: 50vw;
     height: 50vw;
     background-color: blue;
 }
-
+.modal-backdrop{
+    opacity:0.9 !important;
+}
 #artistModal{
 
 }
@@ -140,8 +133,6 @@ iframe{
     height: 100%;
     width: 100%;
 }
-
-
 .particle{
     background-image: url(../assets/fish.png);
     background-size: contain;
@@ -149,10 +140,8 @@ iframe{
     background-position: center;
     opacity: .5;
 }
-
-
 #imagePicker img{
     /*height: 200px;*/
     /*width: 200px;*/
-    width: 15vw;
+    width: 12vw;
 }

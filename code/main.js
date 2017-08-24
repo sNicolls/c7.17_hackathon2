@@ -4,7 +4,10 @@
 $(document).ready(applyClickHandlers);
 function applyClickHandlers(){
     console.log("Applying handlers");
-    $("#submit_button").on("click", formSubmission);
+    $("#submit_button").on("click", function(){
+        formSubmission();
+        if(!a.paused) a.pause();
+    });
     $("#return_to_home").on("click", returnToHomePage);
     $('.no-button').on('click', function(){
         if(!a.paused) a.pause();
