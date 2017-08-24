@@ -8,7 +8,7 @@ function applyClickHandlers(){
     $("#return_to_home").on("click", returnToHomePage);
 
     $(".yes-button").on("click", fishOn);
-    $(".yes-button").on("click", function(){
+    $("body").on("click", function(){
         makeParticlesOnElement(document.querySelector('.yes-button'));
     });
 }
@@ -76,7 +76,6 @@ var predictionPromise = function(imageURL){
 
 //Takes in a keyword and returns an object from YouTube that contains video URL's
 function fishOn(searchKeyWord){
-    
     var youtube_results;
     var youtube_id;
     var youtubekey = "https://www.googleapis.com/youtube/v3/search?type=video&q="  + searchKeyWord + 'fish' + "&maxResults=10&part=snippet&key=AIzaSyAsYUCZFGPolUbZChLMmmX9Za7XHJVbOyg";
@@ -121,7 +120,7 @@ function parseItunesQuery(response, keyWord){
     var music_array = [];
     var music_url = response;
     console.log("ITUNES RESPONSE", response)
-    for(var i=0;i<5;i++){
+    for(var i=0;i<20;i++){
         music_array.push(music_url.results[i]);
         }
     console.log("MUSIC ARR", music_array)
@@ -133,8 +132,8 @@ function parseItunesQuery(response, keyWord){
     a.onended = function(){displayArtist(artistName, trackName)};
     $("#fishModal").modal('toggle')
     $('.yes-button').on('click', function(){
-        $("#fishModal").modal('toggle')
-        $("#videoModal").modal("toggle")
+        setTimeout(function(){ $("#fishModal").modal('toggle')}, 1000);
+
         fishOn(keyWord)
 
     })
@@ -143,18 +142,15 @@ function parseItunesQuery(response, keyWord){
  function displayArtist(artistName, trackName){
     $("#videoModal").modal('toggle');
     $("#artistModal").modal('toggle');
-    $("#artist_and_song_text").append(artistName, "<br> <br>", trackName)
+    $("#artist_and_song_text").append(artistName, "<br> <br>", trackName);
  }
 
 //Alters the view to display what the user should see once a song starts playing
 function createIFrame(youTubeURL){
     var urlString = youTubeURL.toString();
     console.log("URL STRING", urlString);
-  //  $(".border_top_bottom").html("")
-    $("#video_modal_body").append("<iframe src=' "+ urlString + "' </iframe>")
-
-  //  $(".border_top_bottom").append("<button id='reset_yo_self'>RESET</button>")
-  //   $("#reset_yo_self").on("click", function(){
-  //       location.reload();
-  //   })
+    $(".border_top_bottom").html("");
+    $(".border_top_bottom").append("<iframe src=' "+ urlString + "' </iframe>");
+    $(".border_top_bottom").append("<button id='reset_button'>RESET</button>")
+    $("body").on("click", ".reset_button", function(){location.reload})
 }
