@@ -3,19 +3,31 @@
 //onLoad, apply click handlers to the buttons
 $(document).ready(applyClickHandlers);
 function applyClickHandlers(){
-    console.log("Applying handlers")
+    console.log("Applying handlers");
     $("#submit_button").on("click", formSubmission);
     $("#return_to_home").on("click", returnToHomePage);
     $('.no-button').on('click', function(){
         if(!a.paused) a.pause();
     })
+    $(".input-group-addon").on("click",pullUpSampleImages);
     $(".yes-button").on("click", fishOn);
     $("#fishModal").on("click", function(){
         makeParticlesOnElement(document.querySelector('.yes-button'));
     });
 }
 
+function pullUpSampleImages(){
+    console.log("pulling up sample images");
+    $("#imagePicker").modal('toggle');
+    putClickHandlersOnSampleImages();
+}
 
+function putClickHandlersOnSampleImages(){
+    $("#imagePicker img").on("click",function(){
+        $("#input_form").val(this.src)
+        $("#imagePicker").modal('toggle');
+    })
+}
 
 //onSubmit, takes form string and feeds it to Matt's Image recognition
 function formSubmission(){
@@ -64,10 +76,11 @@ function makeArrayFromResponseObject(responseObject) {
 }
 
 var predictionPromise = function(imageURL){
-    console.log("making promises")
+    console.log("making the first promise: getting image predictions from clarifai")
     makePredictionsArray(imageURL)
         .then(
             function (response) {
+                console.log("Clarifai success!");
                 makeArrayFromResponseObject(response);
                 console.log("I was able to make this array:", predictionsArray);
             },
@@ -107,7 +120,7 @@ function parseYoutubeObject(object){
     videoArray = [];
     console.log(object.items);
     for(var i = 0; i < object.items.length; i++){
-        videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId + "?autoplay=1")
+        videoArray.push("https://www.youtube.com/embed/" + object.items[i].id.videoId + "?start=30&autoplay=1")
     }
     console.log("RANDOM YOUTUBE LINK", randomSelector(videoArray))
     createIFrame(randomSelector(videoArray))

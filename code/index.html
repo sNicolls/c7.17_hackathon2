@@ -26,9 +26,28 @@
             <input type="text" class="form-control" id="input_form" placeholder="Enter Image Url">
         </div>
     </span>
-    <button class="btn all_buttons" id="submit_button">Submit</button>
+    <button class="btn all_buttons" id="submit_button">Cast Line</button>
 </div>
 <div class="border_right_left"></div>
+
+
+<!--IMAGE SELECTION MODAL-->
+<div class="modal fade" id="imagePicker" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg" alt="">
+                <img src="http://pngimg.com/uploads/bucket/bucket_PNG7777.png?i=1" alt="">
+                <!--<img src="https://i.ytimg.com/vi/oHg5SJYRHA0/hqdefault.jpg" alt="">-->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Large_bonfire.jpg" alt="">
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 
     <!-- FISH BITING MODAL -->
     <div class="modal fade" id="fishModal" role="dialog">
@@ -37,9 +56,9 @@
             <div class="modal-body">
                 <div class="modal_title">Are The <br> Fish <br> Biting?</div>
                     <div class="button-box">
-                        <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">YES</button>
+                        <button class="btn all_buttons yes-button" data-toggle="modal" data-target="#video_modal" id="yes_button">Yes</button>
 
-                        <button class="btn all_buttons no-button" data-dismiss="modal" id="no_button">NO</button>
+                        <button class="btn all_buttons no-button" data-dismiss="modal" id="no_button">no</button>
 
                     </div>
                 </div>
@@ -50,12 +69,17 @@
 <div class="modal fade" id="artistModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+           <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div class="modal-body">
                 <div class="modal_title" id="artist_and_song_text"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
     <!--<div class="modal fade" id="artistModal" role="dialog">-->
         <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
         <!--<div class="modal-body" id="artist_modal_body"></div>-->
